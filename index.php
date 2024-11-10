@@ -16,8 +16,14 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <div class="container-fluid row">
-        <form>
+        <form method="POST">
             <h3 class=" text-secondary">Resgistar Personal</h3>
+
+            <?php
+            include "Controller/register.php";
+            ?>
+
+
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre">
@@ -35,8 +41,8 @@
                 <input type="email" class="form-control" name="correo">
             </div>
 
-            <button type="submit" class="btn btn-primary" name="btnregistro" value="ok">Registar</button>
-        </form>
+            <button type="submit" class="btn btn-primary" name="btnregistrar" value="ok">Registrar</button>
+            </form>
         <div class="col-8 p-4"></div>
             <table class="table">
                 <thead>
@@ -57,7 +63,7 @@
                     include "Model/connection.php";
                     $sql = $connection->query("SELECT * FROM tb_persona");
                     while ($dato=$sql->fetch_object()){
-                        ?>
+                    ?>
                     
                     <tr>
                         <td><?= $dato->id ?></td>
@@ -69,9 +75,8 @@
 
                         
                         <td>
-                        <a href="" class ="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
-                        <a href="" class ="btn btn-small btn-danger"><i class="fa-solid fa-trash-arrow-up"></i></a>
-
+                            <a href="" class ="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a href="Controller\delete.php?id=<?= $dato->id ?>" class ="btn btn-small btn-danger"><i class="fa-solid fa-trash-arrow-up"></i></a>
                         </td>
                     </tr>
                     <?php }
